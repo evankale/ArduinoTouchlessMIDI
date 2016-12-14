@@ -23,6 +23,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <Arduino.h>
 #define MIDI_DEBUG false
 
 //MIDI baud rate
@@ -44,7 +45,7 @@
 #define MIDI_GENERAL_PURPOSE_SLIDER3 0x12
 #define MIDI_GENERAL_PURPOSE_SLIDER4 0x13
 
-void midiControlChange(byte controllerNumber, byte value)
+void midiControlChange(uint8_t controllerNumber, uint8_t value)
 {
 #if MIDI_DEBUG
     Serial.print("CC\t");
@@ -58,7 +59,7 @@ void midiControlChange(byte controllerNumber, byte value)
 #endif
 }
 
-void midiNoteOn(byte note, byte midiVelocity)
+void midiNoteOn(uint8_t note, uint8_t midiVelocity)
 {
   //TODO: Serial.write(NOTE_ON_CMD|channel);
   Serial.write(MIDI_NOTE_ON_CMD);
@@ -66,7 +67,7 @@ void midiNoteOn(byte note, byte midiVelocity)
   Serial.write(midiVelocity);
 }
 
-void midiNoteOff(byte note, byte midiVelocity)
+void midiNoteOff(unsigned char note, unsigned char midiVelocity)
 {
   Serial.write(MIDI_NOTE_OFF_CMD);
   Serial.write(note);
